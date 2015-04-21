@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Master-->
@@ -63,10 +64,70 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Master" id="tQt-TN-PWz"/>
+                    <connections>
+                        <segue destination="aaH-I6-Yms" kind="presentation" identifier="addReferralSegue" id="5fX-dP-99x"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="605" y="64"/>
+        </scene>
+        <!--Add Referral View Controller-->
+        <scene sceneID="Vao-QO-UmH">
+            <objects>
+                <viewController id="aaH-I6-Yms" customClass="AddReferralViewController" customModule="ReferralsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LiA-4Z-vE3"/>
+                        <viewControllerLayoutGuide type="bottom" id="cBn-Xa-mnw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LH9-hU-wvp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter the custom url" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j7P-9l-8Sp">
+                                <rect key="frame" x="16" y="20" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZc-39-57d">
+                                <rect key="frame" x="285" y="58" width="30" height="30"/>
+                                <state key="normal" title="Add">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="add:" destination="aaH-I6-Yms" eventType="touchUpInside" id="s5p-tj-aOr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9QP-UT-bdy">
+                                <rect key="frame" x="276" y="96" width="48" height="30"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedAdd:" destination="aaH-I6-Yms" eventType="touchUpInside" id="lS5-EA-JBZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9QP-UT-bdy" firstAttribute="top" secondItem="dZc-39-57d" secondAttribute="bottom" constant="8" symbolic="YES" id="CBV-QW-NeJ"/>
+                            <constraint firstItem="j7P-9l-8Sp" firstAttribute="centerX" secondItem="9QP-UT-bdy" secondAttribute="centerX" id="KtW-Pb-KGL"/>
+                            <constraint firstItem="j7P-9l-8Sp" firstAttribute="leading" secondItem="LH9-hU-wvp" secondAttribute="leadingMargin" id="Lwi-KA-Rmm"/>
+                            <constraint firstItem="dZc-39-57d" firstAttribute="top" secondItem="j7P-9l-8Sp" secondAttribute="bottom" constant="8" symbolic="YES" id="TLl-CW-QZ0"/>
+                            <constraint firstItem="j7P-9l-8Sp" firstAttribute="top" secondItem="LiA-4Z-vE3" secondAttribute="bottom" id="rWe-tr-U7i"/>
+                            <constraint firstItem="j7P-9l-8Sp" firstAttribute="centerX" secondItem="dZc-39-57d" secondAttribute="centerX" id="xbE-qn-C7d"/>
+                            <constraint firstItem="j7P-9l-8Sp" firstAttribute="trailing" secondItem="LH9-hU-wvp" secondAttribute="trailingMargin" id="xrw-5W-yuC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="urlTextField" destination="j7P-9l-8Sp" id="mrO-QV-fAH"/>
+                        <segue destination="RGy-HF-nHL" kind="unwind" identifier="leaveFromAddReferral" unwindAction="unwindToSegue:" id="VPs-bL-bkI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lhV-Wr-R5C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="RGy-HF-nHL" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1343" y="-634"/>
         </scene>
         <!--Detail-->
         <scene sceneID="Cn3-H9-jdl">

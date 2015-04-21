@@ -16,6 +16,45 @@ class MasterViewController: UITableViewController {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
+    func fetchReferrals() {
+        /*
+        Make a request to .../api/referrals
+        */
+        let url = NSURL(string: "http://localhost:8000/api/referrals")
+        let request = NSURLRequest(URL: url!)
+        
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue())
+            {(response, data, error) in
+                //Useful for monitoring the API JSON reponse (aka fixing bugs)
+                println(NSString(data: data, encoding:NSUTF8StringEncoding))
+                
+                var parseError: NSError?
+                let JSONdata: AnyObject? = NSJSONSerialization.JSONObjectWithData(data,
+                    options: NSJSONReadingOptions.AllowFragments, error: &parseError)
+                
+                //And begins the unfortunate checking of everything while parsing the JSON in case anything could be Nil
+                if let referralsArray = JSONdata as? NSArray {
+                    self.objects.removeAll(keepCapacity: false)
+                    for referral in referralsArray { // array of referral "objects"
+                        if let referralAtIndex = referral as? NSDictionary { // each "object is convertible to a dictionary
+                            let referralObject = Referral()
+                            if let url = referralAtIndex["url_string"] as? String {
+                                referralObject.url = url
+                            }
+                            if let count = referralAtIndex["count"] as? Int {
+                                referralObject.count = count
+                            }
+                            if let pk = referralAtIndex["id"] as? Int {
+                                referralObject.pk = pk
+                            }
+                            self.objects.append(referralObject)
+                        }
+                    }
+                    self.tableView.reloadData()
+                }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,41 +64,7 @@ class MasterViewController: UITableViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
         self.navigationItem.rightBarButtonItem = addButton
         
-        /*
-            Make a request to .../api/referrals
-        */
-        let url = NSURL(string: "http://localhost:8000/api/referrals")
-        let request = NSURLRequest(URL: url!)
-        
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue())
-        {(response, data, error) in
-            //Useful for monitoring the API JSON reponse (aka fixing bugs)
-            println(NSString(data: data, encoding:NSUTF8StringEncoding))
-            
-            var parseError: NSError?
-            let JSONdata: AnyObject? = NSJSONSerialization.JSONObjectWithData(data,
-                options: NSJSONReadingOptions.AllowFragments, error: &parseError)
-            
-            //And begins the unfortunate checking of everything while parsing the JSON in case anything could be Nil
-            if let referralsArray = JSONdata as? NSArray {
-                for referral in referralsArray { // array of referral "objects"
-                    if let referralAtIndex = referral as? NSDictionary { // each "object is convertible to a dictionary
-                        let referralObject = Referral()
-                        if let url = referralAtIndex["url_string"] as? String {
-                            referralObject.url = url
-                        }
-                        if let count = referralAtIndex["count"] as? Int {
-                            referralObject.count = count
-                        }
-                        if let pk = referralAtIndex["id"] as? Int {
-                            referralObject.pk = pk
-                        }
-                        self.objects.append(referralObject)
-                    }
-                }
-            self.tableView.reloadData()
-            }
-        }
+        fetchReferrals()
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,48 +73,7 @@ class MasterViewController: UITableViewController {
     }
 
     func insertNewObject(sender: AnyObject) {
-        let actionSheetController: UIAlertController = UIAlertController(title: "Add Referral", message: "Enter your custom URL", preferredStyle: .Alert)
-        
-        //Create and add the Cancel action
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
-            //Do some stuff
-        }
-        actionSheetController.addAction(cancelAction)
-        //Create and an option action
-        let nextAction: UIAlertAction = UIAlertAction(title: "Add", style: .Default) { action -> Void in
-            let text = actionSheetController.textFields?[0] as! String
-        }
-        actionSheetController.addAction(nextAction)
-        //Add a text field
-        actionSheetController.addTextFieldWithConfigurationHandler { textField -> Void in
-            //TextField configuration
-            textField.textColor = UIColor.blueColor()
-        }
-        
-        //Present the AlertController
-        self.presentViewController(actionSheetController, animated: true, completion: nil)
-        
-        
-        
-//        var referral = Referral()
-//        
-//        objects.insert(referral, atIndex: 0)
-//        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-//        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-//        
-//        // add it on the back end
-//        let url = NSURL(string: "http://localhost:8000/api/referrals/")
-//        let request = NSMutableURLRequest(URL: url!)
-//        request.HTTPMethod = "POST"
-//        var bodyData = "url_string=\(referral.url)&count=\(referral.count)"
-//        request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding)
-//        
-//        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue())
-//            {(response, data, error) in
-//                //Useful for monitoring the API JSON reponse (aka fixing bugs)
-//                println(NSString(data: data, encoding:NSUTF8StringEncoding))
-//        }
-
+        performSegueWithIdentifier("addReferralSegue", sender: sender)
     }
 
     // MARK: - Segues
@@ -121,6 +85,10 @@ class MasterViewController: UITableViewController {
 //            (segue.destinationViewController as! DetailViewController).detailItem = object
 //            }
 //        }
+    }
+    
+    @IBAction func unwindToSegue(segue:UIStoryboardSegue) {
+        fetchReferrals()
     }
 
     // MARK: - Table View

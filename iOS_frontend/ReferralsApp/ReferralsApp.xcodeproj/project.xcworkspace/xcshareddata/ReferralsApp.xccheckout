@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>B1C8BA63-480F-4868-AFA2-F19325DBC3D0</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>ReferralsApp</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>708C4D32CF10C249722B5DF8202495FA078C635F</key>
 		<string>https://github.com/austinnb/ReferralsApp.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>iOS_frontend/ReferralsApp/ReferralsApp.xcodeproj/project.xcworkspace</string>
+	<string>iOS_frontend/ReferralsApp/ReferralsApp.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>708C4D32CF10C249722B5DF8202495FA078C635F</key>
