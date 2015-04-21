@@ -15,6 +15,7 @@
 		4FA1EB261AE5C7CA00C8417F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FA1EB241AE5C7CA00C8417F /* LaunchScreen.xib */; };
 		4FA1EB321AE5C7CA00C8417F /* ReferralsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA1EB311AE5C7CA00C8417F /* ReferralsAppTests.swift */; };
 		4FA1EB3C1AE5CD0200C8417F /* ReferralModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA1EB3B1AE5CD0200C8417F /* ReferralModel.swift */; };
+		4FA1EB3E1AE5DFF200C8417F /* AddReferralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA1EB3D1AE5DFF200C8417F /* AddReferralViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		4FA1EB301AE5C7CA00C8417F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FA1EB311AE5C7CA00C8417F /* ReferralsAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralsAppTests.swift; sourceTree = "<group>"; };
 		4FA1EB3B1AE5CD0200C8417F /* ReferralModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralModel.swift; sourceTree = "<group>"; };
+		4FA1EB3D1AE5DFF200C8417F /* AddReferralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReferralViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			children = (
 				4FA1EB191AE5C7CA00C8417F /* AppDelegate.swift */,
 				4FA1EB1B1AE5C7CA00C8417F /* MasterViewController.swift */,
+				4FA1EB3D1AE5DFF200C8417F /* AddReferralViewController.swift */,
 				4FA1EB3B1AE5CD0200C8417F /* ReferralModel.swift */,
 				4FA1EB1D1AE5C7CA00C8417F /* DetailViewController.swift */,
 				4FA1EB1F1AE5C7CA00C8417F /* Main.storyboard */,
@@ -222,6 +225,7 @@
 				4FA1EB1C1AE5C7CA00C8417F /* MasterViewController.swift in Sources */,
 				4FA1EB3C1AE5CD0200C8417F /* ReferralModel.swift in Sources */,
 				4FA1EB1A1AE5C7CA00C8417F /* AppDelegate.swift in Sources */,
+				4FA1EB3E1AE5DFF200C8417F /* AddReferralViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
