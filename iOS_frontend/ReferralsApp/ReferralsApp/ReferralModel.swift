@@ -9,6 +9,7 @@
 import Foundation
 
 class Referral {
+    // ummmmmmm yeah, pretty strightforward here...
     var url:String = ""
     var count:Int = 0
     var pk:Int = 0
