@@ -11,10 +11,6 @@ import UIKit
 class DetailViewController: UIViewController {
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
-    @IBAction func backToMaster(sender: UIButton) {
-        performSegueWithIdentifier("leaveFromAddReferral", sender: nil)
-    }
-
     var detailItem: Referral? {
         didSet {
             // Update the view.
@@ -26,7 +22,7 @@ class DetailViewController: UIViewController {
         // Update the user interface for the detail item.
         if let detail = self.detailItem {
             if let label = self.detailDescriptionLabel {
-                label.text = detail.url
+                label.text = "Welcome to the web! " + detail.url
             }
             let oldURL = detail.url as String // explicit casts for serialization purposes
             let newcount = detail.count + 1 as Int // explicit casts for serialization purposes
@@ -56,7 +52,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.configureView()
-        self.navigationController?.navigationBarHidden = true;
+        self.title = detailItem?.url
         
     }
 
